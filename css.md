@@ -1331,3 +1331,448 @@ margin-left:-100px：让盒子向左移动自身宽度的一半。
 
 
 
+### 3.5显示与隐藏
+
+#### display
+
+display属性用于设置一个元素应如何显示。
+```
+display:none；隐藏对象
+display:block；除了转换为块级元素之外，同时还有显示元素的意思
+```
+**display隐藏元素后，不再占有原来的位置。**
+
+
+
+#### visibility可见性
+
+visibility属性用于指定一个元素应可见还是隐藏。
+```
+visibility：visible;元素可视
+visibility：hidden;元素隐藏
+```
+
+visibility隐藏元素后，继续占有原来的位置。
+如果隐藏元素想要原来位置，就用visibility：hidden
+如果隐藏元素不想要原来位置，就用display：none(用处更多重点）
+
+
+
+#### overflow
+
+语法：
+```
+overflow: visible|auto|hidden scroll
+```
+
+
+
+| 属性    | 作用                         |
+| ------- | ---------------------------- |
+| visible | 不剪切内容也不添加滚动条。   |
+| auto    | 在需要时剪切内容并添加滚动条 |
+| hidden  | 不显示超过对象尺寸的内容     |
+| scroll  | 总是显示滚动条               |
+
+
+
+### 4.0 css高阶技巧
+
+#### 4.1 精灵图
+
+精灵图（sprites）的使用
+使用精灵图核心：
+1.精灵技术主要针对于背景图片使用。就是把多个小背景图片整合到一张大图片中。
+2.这个大图片也称为sprites精灵图或者雪碧图
+3.移动背景图片位置，此时可以使用background-position。
+4.移动的距离就是这个目标图片的x和y坐标。注意网页中的坐标有所不同
+5.因为一般情况下都是往上往左移动，所以数值是负值。
+6.使用精灵图的时候需要精确测量，每个小背景图片的大小和位置。
+
+
+
+#### 4.2 字体图标
+
+字体图标使用场景：主要用于显示网页中通用、常用的一些小图标
+精灵图是有诸多优点的，但是缺点很明显。
+1.图片文件还是比较大的。
+2.图片本身放大和缩小会失真。
+3.一旦图片制作完毕想要更换非常复杂。
+此时，有一种技术的出现很好的解决了以上问题，就是字体图标iconfont。
+字体图标可以为前端工程师提供一种方便高效的图标使用方式，展示的是图标，本质属于字体。
+
+
+
+字体图标的优点
+●轻量级：一个图标字体要比一系列的图像要小。一旦字体加载了，图标就会马上渲染出来，减少了服务器请求
+●灵活性：本质其实是文字，可以很随意的改变颜色、产生阴影、透明效果、旋转等
+●兼容性：几乎支持所有的浏览器，请放心使用
+注意：字体图标不能替代精灵技术，只是对工作中图标部分技术的提升和优化。
+总结：
+1.如果遇到一些结构和样式比较简单的小图标，就用字体图标。
+2.如果遇到一些结构和样式复杂一点的小图片，就用精灵图。
+
+
+
+字体图标下载网站
+icomoon字库 http://icomoon.io
+
+阿里iconfont字库 http://www.iconfont.cn/
+
+
+
+使用:
+
+把fonts文件夹放在根目录
+```
+@font-face {
+	font-family:'icomoon';
+	src: url('fonts/icomoon.eot?7kkyc2');
+	src: url('fonts/icomoon.eot?7kkyc2#iefix')format('embedded-opentype')，
+	url('fonts/icomoon.ttf?7kkyc2')format('truetype'),
+	url('fonts/icomoon.woff?7kkyc2')format ('woff'),
+	url('fonts/icomoon.svg?7kkyc2#icomoon'）format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+```
+
+
+
+#### 4.3 css三角做法
+
+```
+div {
+	width:0;
+	height:0;
+	line-height:0;
+	font-size:0;
+	border: 50px solid transparent;
+	border-left-color: pink;
+}
+```
+
+边框本质三角形
+
+#### 4.4 css用户界面形式
+
+##### 更改用户鼠标样式 cursor
+
+```
+li {cursor: pointer;}
+```
+设置或检索在对象上移动的鼠标指针采用何种系统预定义的光标形状。
+
+|属性值|描述|
+|---|---|
+|default|小白 默认|
+|pointer|小手|
+|move| 移动|
+| text |文本|
+|not-allowed|禁止|
+
+#### 
+
+##### 轮廓线 outling
+
+```
+outling: none;
+```
+
+
+
+##### 防止拖拽文本域 resize
+
+```
+resize:none;
+```
+
+
+
+#### 4.5 vertical-align
+
+CSS的vertical-align属性使用场景：经常用于设置图片或者表单(行内块元素）和文字垂直对齐。
+官方解释：用于设置一个元素的垂直对齐方式，但是它只针对于行内元素或者行内块元素有效。
+语法：
+```
+vertical-align : baseline | top I middle | bottom
+```
+|值|描述|
+|---|---|
+|baseline|默认。元素放置在父元素的基线上。|
+|top|把元素的顶端与行中最高元素的顶端对齐|
+|middle|把此元素放置在父元素的中部。|
+|bottom|把元素的顶端与行中最低的元素的顶端对齐。|
+
+
+
+**解决图片底部默认空白缝隙问题**
+bug：图片底侧会有一个空白缝隙，原因是行内块元素会和文字的基线对齐。
+主要解决方法有两种：
+1.给图片添加`vertical-align:middle| top| bottom`等。（提倡使用的）
+2.把图片转换为块级元素display:block
+
+
+
+#### 4.6 文字溢出使用省略号
+
+1.单行文本溢出显示省略号--必须满足三个条件
+```
+/*1，先强制一行内显示文本*/
+white-space:nowrap;（默认 normal自动换行）
+/*2．超出的部分隐藏*/
+overflow: hidden;
+/*3，文字用省略号替代超出的部分*/
+text-overflow: ellipsis;
+```
+
+2.多行文本溢出显示省略号
+多行文本溢出显示省略号，有较大兼容性问题，适合于webKit浏览器或移动端（移动端大部分是webkit内核)
+```
+overflow: hidden,
+text-overflow: ellipsis;
+/*弹性伸缩盒子模型显示*/
+display: -webkit-box;
+/*限制在一个块元素显示的文本的行数*/
+-webkit-line-clamp:2;
+/*设置或检索伸缩盒对像的子元素的排列方式*/
+-webkit-box-orient: vertical;
+```
+
+
+
+#### 4.7 布局技巧
+
+##### margin负值
+
+1.让每个盒子margin往左侧移动-1px正好压住相邻盒子边框
+2.鼠标经过某个盒子的时候，提高当前盒子的层级即可（如果没有有定位，则助相对定位（保留位置），如果有定位，则加z-index）
+
+##### 文字围绕浮动元素
+
+##### 梯形
+
+```
+width:0;
+height:0;
+border-styb
+border-color: transparent red transparent transparent;
+solid;
+border-width: 22px 8px 00;
+```
+
+#### 4.8 css初始化
+
+```css
+*{
+	margin: 0;padding: 0
+}
+em,i{
+	font-style:normal
+}
+li{
+    list-style:none
+}
+img{
+    border: 0;vertical-align:middle
+}
+button{
+    cursor:pointer
+}
+a{
+    color:#666;
+    text-decoration:none
+}
+a:hover{color:#ff0f23
+}
+button,input{
+    font-family:PingFang SC,Source Han Sans CN,Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,"\5B8B\4F53",sans-serif
+}
+
+
+```
+
+
+
+### 5.0 html5和css3
+
+#### 5.1 html5的新特性
+```
+<header>：头部标笨
+<nav>：导航标签
+<article>：内容标签
+<section>：定义文档某个区域
+<aside>：侧边栏标签
+<footer>：尾部标签
+```
+
+注意：
+●这种语义化标准主要是针对搜索引擎的
+●这些新标签页面中可以使用多次
+●在IE9中，需要把这些元素转换为块级元素
+●其实，我们移动端更喜欢使用这些标签
+●HTML5还增加了很多其他标签，我们后面再慢慢学
+
+![](.\img\Snipaste_2026-05-21_19-10-04.png)
+
+
+
+#####  html5新增多媒体标签
+
+视频`<video>`
+
+video元素支持三种视频格式: mp4, webm ,ogg(最好使用mp4格式)
+```
+<video src="文件路径" controls="controls"></video>
+
+<video width="320" height="240" controls>
+	<source src="movie.mp4" type="video/mp4">
+	<source src="movie.ogg" type="video/ogg"
+	您的浏览器不支持video标签。
+</vidEo>
+```
+1. 视频`<video>`-常见属性
+|属性|值|描述|
+|---|---|----|
+|autoplay|autoplay|视频就绪自动播放（谷歌浏览器需要添加muted来解决自动播放问题）|
+|controls|controls|向用户显示播放控件|
+|width|pixels(像素)|设置播放器宽度|
+|height|pixels(像素）|设置播放器高度|
+|loop|loop|播放完是否继续播放该视频，循环播放|
+|preload|auto（预先加载视频）none（不应加载视频）|规定是否预加载视频（如果有了autoplay就忽略该属性)|
+|src|url|视频ur地址|
+|poster|Imgurl|加载等待的画面图片|
+|muted|muted|静音插放|
+
+音频`<audio>`
+
+audio元素支持三种格式: mp4, wav, ogg
+```
+<audio src="文件地址" controls="controls"></audio>
+
+<audio controls="controls">
+	<source src="happy.mp3" type= "audio/mpeg">
+	<source src="happy.ogg" type= "audio/ogg">
+	您的浏览器不支持<audio>标签
+</ audio>
+```
+
+
+
+| 属性     | 值       | 描述                                           |
+| -------- | -------- | ---------------------------------------------- |
+| autoplay | autoplay | 如果出现该属性,则音频在就绪后马上播放          |
+| controls | controls | 如果出现该属性,则向用户展示控件,比如说播放按钮 |
+| loop     | loop     | 如果出现该属性,则每当音频结束时重新开始播放    |
+| src      | url      | 要播放音频的url                                |
+
+
+
+#####  html5新增input类型
+
+|属性值|说明|
+|--|--|
+|type="email"|限制用户输入必须为Email类型|
+|type="url"|限制用户输入必须为URL类型|
+|type="date"|限制用户输入必须为日期类型|
+|type="time"|限制用户输入必须为时间类型|
+|type="month"|限制用户输入必须为月类型|
+|type="week"|限制用户输入必须为周类型|
+|type="number"|限制用户输入必须为数字类型|
+|type="tel"|手机号码|
+|type="search"|搜索框|
+|type="color"|生成一个颜色选择表单|
+
+
+
+#####  html5新增的表单属性
+
+|属性|值|说明|
+|---|---|---|
+|required|required|表单拥有该属性表示其内容不能为空，必填|
+|placeholder|提示文本|表单的提示信息，存在默认值将不显示|
+|autofocus|autofocus|自动聚焦属性，页面加载完成自动聚焦到指定表单 |
+|autocomplete|off /on|当用户在字段开始键入时，浏览器基于之前键入过的值，应该显示出在字段中填写的选项。 默认已经打开，如 autocomplete="on”，关闭 autocomplete ="off"”需要放在表单内，同时加上name属性，同时成功提交|
+|multiple|multiple|可以多选文件提交|
+
+
+
+#### 5.2 CSS3的新特性
+
+1.属性选择器
+
+| 选择符        | 简介                                  |
+| ------------- | ------------------------------------- |
+| E[att]        | 选择具有att属性的E元素                |
+| E[att="val"]  | 匹配具有att属性且属性值等于val的E元素 |
+| E[att^="val"] | 匹配具有att属性且值以val开头的E元素   |
+| E[att$="val"] | 匹配具有att属性且值以val结尾的E元素   |
+| E[att*="val"] | 匹配具有att属性且值中含有val的E元素   |
+
+2.结构伪类选择器
+
+| 选择符          | 简介                          |
+| --------------- | ----------------------------- |
+| E:first-child   | 匹配父元素中的第一个子元素E   |
+| E:last-child    | 匹配父元素中的最后一个子元素E |
+| E:nth-child(n)  | 匹配父元素中的第n个子元素E    |
+| E:first-of-type | 指定类型E的第一个             |
+| E:last-of-type  | 指定类型E的最后一个           |
+| E-nth-of-type   | 指定类型E的第n个              |
+
+E:nth-child(n)  :   n可以为数字,关键字和公式     even(偶数) odd(奇数)
+
+公式比如:  2n表示偶数, 2n+1表示奇数 ,n是从0开始算的
+
+nth-child先看的是第n个孩子,再去匹配元素,nth-of-type看的是指定元素的第n个孩子
+
+
+
+3.伪元素选择器
+
+| 选择符   | 简介                     |
+| -------- | ------------------------ |
+| ::before | 在元素内部的前面插入内容 |
+| ::after  | 在元素内部的后面插入内容 |
+
+ 注意：
+
+- before和after创建一个元素，但是属于行内元素
+- 新创建的这个元素在文档树中是找不到的，所以我们称为伪元素
+- 语法：element:before0
+- before 和 after 必须有content 属性
+- before在父元素内容的前面创建元素，after在父元素内容的后面插入元素
+- 伪元素选择器和标签选择器一样，权重为1
+
+##### 盒子模型 border-box
+
+box-sizing: content-box 盒子大小为 width+ padding + border （以前默认的）
+box-sizing:border-box 盒子大小为width
+如果盒子模型我们改为了box-sizing: border-box，那padding和border就不会撑大盒子了（前提padding 和border不会超过width宽度）
+
+##### css其他特性
+
+CSS3滤镜filter:
+filter CSS属性将模糊或颜色偏移等图形效果应用于元素。
+
+```
+filter:函数():例如：filter:blur(5px); blur模糊处理 数值越大越模糊
+```
+
+calc() 此CSS函数让你在声明CSS属性值时执行一些计算。
+```
+width: calc(100% -80px);
+```
+
+##### css过渡
+```
+transition:要过渡的属性 花费时间 运动曲线 何时开始;
+```
+1.属性：想要变化的CSS属性，宽度高度背景颜色内外边距都可以。如果想要所有的属性都
+变化过渡，写一个all就可以。
+2.花费时间：单位是秒（必须写单位）比如 0.5s
+3.运动曲线：默认是ease（可以省略）
+
+linear:匀速        ease: 逐渐慢下来         ease-in : 加速      ease-out: 减速       ease-in-out: 先加速后减速
+
+4.何时开始：单位是秒（必须写单位）可以设置延迟触发时间默认是0s（可以省略）
