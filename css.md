@@ -1711,14 +1711,14 @@ audio元素支持三种格式: mp4, wav, ogg
 
 2.结构伪类选择器
 
-| 选择符          | 简介                          |
-| --------------- | ----------------------------- |
-| E:first-child   | 匹配父元素中的第一个子元素E   |
-| E:last-child    | 匹配父元素中的最后一个子元素E |
-| E:nth-child(n)  | 匹配父元素中的第n个子元素E    |
-| E:first-of-type | 指定类型E的第一个             |
-| E:last-of-type  | 指定类型E的最后一个           |
-| E-nth-of-type   | 指定类型E的第n个              |
+| 选择符           | 简介                          |
+| ---------------- | ----------------------------- |
+| E:first-child    | 匹配父元素中的第一个子元素E   |
+| E:last-child     | 匹配父元素中的最后一个子元素E |
+| E:nth-child(n)   | 匹配父元素中的第n个子元素E    |
+| E:first-of-type  | 指定类型E的第一个             |
+| E:last-of-type   | 指定类型E的最后一个           |
+| E:nth-of-type(n) | 指定类型E的第n个              |
 
 E:nth-child(n)  :   n可以为数字,关键字和公式     even(偶数) odd(奇数)
 
@@ -1776,3 +1776,4 @@ transition:要过渡的属性 花费时间 运动曲线 何时开始;
 linear:匀速        ease: 逐渐慢下来         ease-in : 加速      ease-out: 减速       ease-in-out: 先加速后减速
 
 4.何时开始：单位是秒（必须写单位）可以设置延迟触发时间默认是0s（可以省略）
+
