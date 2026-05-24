@@ -1594,110 +1594,7 @@ button,input{
 
 
 
-### 5.0 html5和css3
-
-#### 5.1 html5的新特性
-```
-<header>：头部标笨
-<nav>：导航标签
-<article>：内容标签
-<section>：定义文档某个区域
-<aside>：侧边栏标签
-<footer>：尾部标签
-```
-
-注意：
-●这种语义化标准主要是针对搜索引擎的
-●这些新标签页面中可以使用多次
-●在IE9中，需要把这些元素转换为块级元素
-●其实，我们移动端更喜欢使用这些标签
-●HTML5还增加了很多其他标签，我们后面再慢慢学
-
-![](.\img\Snipaste_2026-05-21_19-10-04.png)
-
-
-
-#####  html5新增多媒体标签
-
-视频`<video>`
-
-video元素支持三种视频格式: mp4, webm ,ogg(最好使用mp4格式)
-```
-<video src="文件路径" controls="controls"></video>
-
-<video width="320" height="240" controls>
-	<source src="movie.mp4" type="video/mp4">
-	<source src="movie.ogg" type="video/ogg"
-	您的浏览器不支持video标签。
-</vidEo>
-```
-1. 视频`<video>`-常见属性
-|属性|值|描述|
-|---|---|----|
-|autoplay|autoplay|视频就绪自动播放（谷歌浏览器需要添加muted来解决自动播放问题）|
-|controls|controls|向用户显示播放控件|
-|width|pixels(像素)|设置播放器宽度|
-|height|pixels(像素）|设置播放器高度|
-|loop|loop|播放完是否继续播放该视频，循环播放|
-|preload|auto（预先加载视频）none（不应加载视频）|规定是否预加载视频（如果有了autoplay就忽略该属性)|
-|src|url|视频ur地址|
-|poster|Imgurl|加载等待的画面图片|
-|muted|muted|静音插放|
-
-音频`<audio>`
-
-audio元素支持三种格式: mp4, wav, ogg
-```
-<audio src="文件地址" controls="controls"></audio>
-
-<audio controls="controls">
-	<source src="happy.mp3" type= "audio/mpeg">
-	<source src="happy.ogg" type= "audio/ogg">
-	您的浏览器不支持<audio>标签
-</ audio>
-```
-
-
-
-| 属性     | 值       | 描述                                           |
-| -------- | -------- | ---------------------------------------------- |
-| autoplay | autoplay | 如果出现该属性,则音频在就绪后马上播放          |
-| controls | controls | 如果出现该属性,则向用户展示控件,比如说播放按钮 |
-| loop     | loop     | 如果出现该属性,则每当音频结束时重新开始播放    |
-| src      | url      | 要播放音频的url                                |
-
-
-
-#####  html5新增input类型
-
-|属性值|说明|
-|--|--|
-|type="email"|限制用户输入必须为Email类型|
-|type="url"|限制用户输入必须为URL类型|
-|type="date"|限制用户输入必须为日期类型|
-|type="time"|限制用户输入必须为时间类型|
-|type="month"|限制用户输入必须为月类型|
-|type="week"|限制用户输入必须为周类型|
-|type="number"|限制用户输入必须为数字类型|
-|type="tel"|手机号码|
-|type="search"|搜索框|
-|type="color"|生成一个颜色选择表单|
-
-
-
-#####  html5新增的表单属性
-
-|属性|值|说明|
-|---|---|---|
-|required|required|表单拥有该属性表示其内容不能为空，必填|
-|placeholder|提示文本|表单的提示信息，存在默认值将不显示|
-|autofocus|autofocus|自动聚焦属性，页面加载完成自动聚焦到指定表单 |
-|autocomplete|off /on|当用户在字段开始键入时，浏览器基于之前键入过的值，应该显示出在字段中填写的选项。 默认已经打开，如 autocomplete="on”，关闭 autocomplete ="off"”需要放在表单内，同时加上name属性，同时成功提交|
-|multiple|multiple|可以多选文件提交|
-
-
-
-#### 5.2 CSS3的新特性
+### 5.0 CSS3的新特性
 
 1.属性选择器
 
@@ -1777,3 +1674,201 @@ linear:匀速        ease: 逐渐慢下来         ease-in : 加速      ease-ou
 
 4.何时开始：单位是秒（必须写单位）可以设置延迟触发时间默认是0s（可以省略）
 
+##### 2D转换
+
+转换（transform）是CSS3中具有颠覆性的特征之一，可以实现元素的位移、旋转、缩放等效果
+转换（transform）可以简单理解为变形
+
+- 移动：translate
+- 旋转：rotate
+- 缩放：scale
+
+```
+transform:translate(X,Y);
+transform:translateX(n);
+transform:translateY(n);
+```
+
+2.重点
+定义2D转换中的移动，沿着X和Y轴移动元素
+translate最大的优点：不会影响到其他元素的位置
+translate中的档分比单位是相对于自身元素的translate:(50%,50%):
+对行内标签没有效果
+
+
+
+1.rotate 语法
+
+```
+transform:rotate (度数)
+```
+
+2.重点
+rotate里面跟度数，单位是deg   比如rotate(45deg)
+角度为正时，顺时针，负时，为逆时针
+默认旋转的中心点是元素的中心点
+
+```
+切换
+transform-origin:left bottom;
+transform-origin:50px 50px;
+```
+
+
+
+1.scale语法
+
+```
+transform:scale(x-y):
+```
+2.注意
+注意其中的x和y用逗号分隔
+transform:scale(1,1）：宽和高都放大一倍，相对于没有放大
+transform:scale(2,2)：宽和高都放大了2倍
+transform:scale(2)：只写一个参数，第二个参数则和第一个参数一样，相当于scale(2,2)）
+transform:scale(0.5,0.5)：缩小
+sacle缩放最大的优势：可以设置转换中心点缩放，默认以中心点缩放的，而且不影响其他盒子
+
+
+
+综合写法
+
+```
+1.同时使用多个转换，其格式为：transform: translate() rotate() scale()..等，
+2.其顺序会影转换的效果。（先旋转会改变坐标轴方向）
+3.当我们同时有位移和其他属性的时候，记得要将位移放到最前
+```
+
+
+
+##### 动画
+
+动画（animation）是CSS3中具有颠覆性的特征之一，可通过设置多个节点来精确控制一个或一组动画，常用来实现复杂的动画效果。
+相比较过渡，动画可以实现更多变化，更多控制，连续自动播放等效果。
+
+制作动画分为两步：
+1．先定义动画
+2.再使用（调用）动画
+1.用keyframes定义动画（类似定义类选择器）
+```
+@keyframes 动画名称 {
+	0%{
+		width:100px;
+	}
+	100%{
+		width:200pxi
+	}
+}
+```
+
+2.元素使用动画
+```
+div {
+	width:200px;
+	height:200px;
+	background-color: pink;
+	margin: 100px auto;
+	/* 调用动画 */
+	anjmation-name：动画名称；
+	/*“持续时间 */
+	animation-duration：持续时间；
+}
+```
+
+动画序列
+
+0%是动画的开始，100%是动画的完成。这样的规则就是动画序列。
+在@keyframes中规定某项CSS样式，就能创建由当前样式逐渐改为新样式的动画效果。
+动画是使元素从一种样式逐渐变化为另一种样式的效果。可以改变任意多的样式任意多的次数。
+请用百分比来规定变化发生的时间，或用关键词”from”和“to”，等同于0%和100%。
+
+|属性|描述|
+|-|-|
+|@keyframes|规定动画。|
+|animation|所有动画属性的简写属性，除了animation-play-state属性。|
+|animation-name|规定@keyframes动画的名称。（必须的）|
+|animation-duration|规定动画完成一个周期所花费的秒或毫秒，默认是0。（必须的）|
+|animation-timing-function|规定动画的速度曲线，默认是“ease”|
+|animation-delay|规定动画何时开始，默认是0。|
+|animation-iteration-count|规定动画被播放的次数，默认是1，还有infinite|
+|animation-direction|规定动画是否在下一周期逆向播放，默认是“normal“,alternate逆播放|
+|animation-play-state|规定动画是否正在运行或暂停。默认是“running”还有“paused”。|
+|animation-fill-mode|规定动画结束后状态，保持forwards回到起始backwards|
+
+animation：动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 动画起始或者结束的状态；
+
+简写属性里面不包含animation-play-state
+暂停动画：animation-play-state:puased;经常和鼠标经过等其他配合使用
+想要动画走回来，而不是直接跳回来：animation-direction：alternate
+盒子动画结束后，停在结束位置：animation-fill-mode：forwards
+
+animation-timing-function：规定动画的速度曲线，默认是“ease”
+|值|描述|
+|-|-|
+|linear|动画从头到尾的速度是相同的。匀速|
+|ease|默认。动画以低速开始，然后加快，在结束前变慢。|
+|ease-in|动画以低速开始。|
+|ease-out|动画以低速结束。|
+|ease-in-out|动画以低速开始和结束。|
+|steps()|指定了时间函数中的间隔数量（步长）|
+
+
+
+##### 3D转换
+
+三维坐标系其实就是指立体空间，立体空间是由3个轴共同组成的。
+x轴：水平向右
+注意：x右边是正值，左边是负值
+y轴：垂直向下
+注意：y下面是正值，上面是负值
+z轴：垂直屏幕
+注意：往外面是正值，往里面是负值
+
+
+
+**3D位移: translate3d(x,y,z)**
+3D移动在2D移动的基础上多加了一个可以移动的方向，就是z轴方向。
+
+```
+translform:translateX(100px)：仅仅是在x轴上移动
+translform:translateY(100px)：仅仅是在Y轴上移动
+translform:translateZ(100px)：仅仅是在Z轴上移动（注意：translateZ一般用px单位）
+正值为向外移动
+transform:translate3d(x,y,z）：其中x、y、z分别指要移动的轴的方向的距离
+```
+**3D旋转:rotate3d(x,y,z)**
+
+3D旋转指可以让元素在三维平面内沿着x轴，y轴，z轴或者自定义轴进行旋转。
+语法
+
+```
+transform:rotateX(45deg)：沿看x轴i正方向旋转45度
+transform:rotateY(45deg)：沿着y轴正方向旋转45deg
+transform:rotateZ(45deg)：沿着Z轴i正方向旋转45deg
+transform:rotate3d(x,y,z,deg)：沿着自定义轴旋转deg为角度（了解即可）
+```
+对于元素旋转的方向的判断我们需要先学习一个左手准则。
+左手准则
+●左手的手拇指指向x轴的正方向
+●其余手指的弯曲方向就是该元素沿着x轴旋转的方向
+
+**透视:perspective**
+
+在2D平面产生近大远小视觉立体，但是只是效果二维的
+
+- 如果想要在网页产生3D效果需要透视（理解成3D物体投影在2D平面内）。
+- 模拟人类的视觉位置，可认为安排一只眼睛去看
+- 透视我们也称为视距：视距就是人的眼睛到屏幕的距离
+- 距离视觉点越近的在电脑平面成像越大，越远成像越小
+- 透视的单位是像素
+
+透视写在被观察元素的父盒子上面的
+d：就是视距，视距就是一个距离人的眼睛到屏幕的距离。
+z：就是z轴，物体距离屏幕的距离，z轴越大（正值）我们看到的物体就越大。
+
+**3D呈现transform-style**
+
+控制子元素是否开启三维立体环境。。
+transform-style:flat子光素不开启3d立体空间默认的
+transform-style: preserve-3d;子元素开启立体空间
+代码写给父级，但是影响的是子盒子
