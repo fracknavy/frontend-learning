@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父盒子不动，子元素3D环绕</title>
+    <style>
+        body {
+            perspective: 1500px;
+
+        }
+
+        .box {
+            position: relative;
+            width: 500px;
+            height: 200px;
+            margin: 200px auto;
+            transform-style: preserve-3d;
+
+        }
+
+        .box>div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            left: 50%;
+            top: 50%;
+            margin: -100px 0 0 -100px;
+            background-size: cover;
+            background-position: center;
+
+        }
+
+        .chatgpt {
+            background-image: url(../img/chatgpt.png);
+            transform: rotateY(0deg) translateZ(180px);
+            animation: orbit0 6s linear infinite;
+        }
+
+        .gemini {
+            background-image: url(../img/gemini.png);
+            transform: rotateY(90deg) translateZ(180px);
+            animation: orbit90 6s linear infinite;
+        }
+
+        .claude {
+            background-image: url(../img/claude.png);
+            transform: rotateY(180deg) translateZ(180px);
+            animation: orbit180 6s linear infinite;
+        }
+
+        .deepseek {
+            background-image: url(../img/deepseek.png);
+            transform: rotateY(270deg) translateZ(180px);
+            animation: orbit270 6s linear infinite;
+        }
+
+        .box :hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes orbit0 {
+            from {
+                transform:
+                    rotateY(0deg) translateZ(180px);
+            }
+
+            to {
+                transform:
+                    rotateY(360deg) translateZ(180px);
+            }
+        }
+
+        @keyframes orbit90 {
+            from {
+                transform:
+                    rotateY(90deg) translateZ(180px);
+            }
+
+            to {
+                transform:
+                    rotateY(450deg) translateZ(180px);
+            }
+        }
+
+        @keyframes orbit180 {
+            from {
+                transform:
+                    rotateY(180deg) translateZ(180px);
+            }
+
+            to {
+                transform:
+                    rotateY(540deg) translateZ(180px);
+            }
+        }
+
+        @keyframes orbit270 {
+            from {
+                transform:
+                    rotateY(270deg) translateZ(180px);
+            }
+
+            to {
+                transform:
+                    rotateY(630deg) translateZ(180px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="chatgpt"></div>
+        <div class="gemini"></div>
+        <div class="claude"></div>
+        <div class="deepseek"></div>
+    </div>
+</body>
+
+</html>

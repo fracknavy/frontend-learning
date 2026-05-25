@@ -9,14 +9,45 @@
         .box {
             width: 100px;
             height: 100px;
+            margin: 200px auto;
+            position: relative;
+            transition: all 1s;
+            transform-style: preserve-3d;
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background-color: #ff8c8c;
+            z-index: 2;
+        }
+
+        .back {
+            background-color: #64a555;
+            transform: rotateY(180deg);
+        }
+
+        .box:hover {
+            transform: rotateY(180deg);
         }
     </style>
 </head>
 
 <body>
     <div class="box">
-        <div class="front"></div>
-        <div class="back"></div>
+        <div class="front">正</div>
+        <div class="back">反</div>
     </div>
 </body>
 
