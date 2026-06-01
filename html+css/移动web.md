@@ -462,3 +462,125 @@ github地址：https://github.com/amfe/lib-flexible
 
 vscode插件: px to rem...插件可以自动将px转换为rem
 
+#### 2.4 grid布局
+
+网格布局是一种二维布局模型，允许开发者通过定义行（rows）和列（columns）来精确控制网页元素的位置和尺寸。网格布局的核心是创建好网格并放入各种元素
+
+容器(父盒子)设置`display:grid;`(块级) 或者`display: inline-grid`(行内)
+
+与弹性盒子不同的是，在定义网格后，网页并不会马上发生变化display:grid 的声明只创建了一个只有一列的网格
+
+**grid tracks**
+
+网格轨道(Grid Tracks)决定了网格容器的基础布局结构，为子元素提供放置的位置。
+
+**通俗理解：**Grid 像先画一张表格，再把内容放进格子里。columns 是列，rows 是行，gap 是格子之间的缝。
+
+- display:grid 创建网格容器。
+- grid-template-columns 定义列轨道。
+- grid-template-rows 定义行轨道。
+- gap 设置行列间距。
+- Grid 适合二维布局：同时控制行和列。
+
+```
+.grid {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+}
+```
+
+**fr单位**
+
+**通俗理解：**`fr` 像分蛋糕：固定宽度先切走，剩下的空间再按 1fr、2fr 这些份数分。
+
+- `fr` 表示可用空间的一份。
+- 1fr 1fr 1fr 表示三列均分。
+- 固定宽度和` fr` 可混用，例如 `240px 1fr`。
+- `fr `只分配剩余空间，不等同于百分比。
+
+```
+.grid { grid-template-columns: 240px 1fr 1fr; }
+```
+
+**repeat 与自动填充**
+
+**通俗理解：**repeat 像复制同一种列宽规则；auto-fill 像货架自动摆商品，空间够就多摆一列，不够就少摆一列。
+
+- repeat(4, 1fr) 表示重复 4 次 1fr。
+- auto-fill 会尽可能填充更多列。
+- minmax(min, max) 可以设置轨道最小和最大尺寸。
+- repeat(auto-fill, minmax(180px, 1fr)) 是响应式卡片网格常用写法。
+
+```
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+```
+
+**网格线与项目放置**
+
+- grid-column: 1 / 3 表示从第 1 条列线跨到第 3 条列线。
+- grid-row 控制行方向跨度。
+- span n 表示跨 n 个轨道。
+- 可用于 B 站式复杂卡片布局。
+
+```
+.hero-card {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+```
+
+#### 2.5 响应式布局
+
+**响应式开发原理**
+
+使用媒体查询针对不同宽度的设备进行布局和样式的设置，从而适配不同设备的目的
+
+| 设备划分               | 尺寸区间        |
+| ---------------------- | --------------- |
+| 超小屏幕(手机)         | <768px          |
+| 小屏设备(平板)         | >=768 ~ <992px  |
+| 中等屏幕(桌面显示器)   | >=992 ~ <1200px |
+| 宽屏设备(大桌面显示器) | >= 1200px       |
+
+响应式开发一般有一个布局容器,一般叫做`.container`
+
+平时我们的响应式尺寸划分
+超小屏幕（手机，小于768px）：设置宽度为100%
+小屏幕（平板，大于等于768px）：设置宽度为750px
+中等屏幕（桌面显示器，大于等于992px）：宽度设置为970px
+大屏幕（大桌面显示器，大于等于1200px）：宽度设置为1170px
+
+```
+.container{}
+@media screen and (max-width: 768px){
+	.container {
+	width: 100%;
+	}
+}
+@media screen and (min-width: 768px){
+	.container {
+	width: 750px;
+	}
+}
+@media screen and (min-width: 992px){
+	.container {
+	width: 970px;
+	}
+}
+@media screen and (min-width: 1200px){
+	.container {
+	width: 1170px;
+	}
+}
+```
+
+##### **bootstrap**
+
+官网：https://getbootstrap.com/
+中文官网：https://v5.bootcss.com/docs
