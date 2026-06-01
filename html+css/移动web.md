@@ -584,3 +584,96 @@ vscode插件: px to rem...插件可以自动将px转换为rem
 
 官网：https://getbootstrap.com/
 中文官网：https://v5.bootcss.com/docs
+
+**Bootstrap 基本使用**
+
+- 来源：03-BootStrap基本使用.html；05-BootStrap字体图标使用.html
+
+**要点：**
+
+- Bootstrap 是响应式 UI 框架，提供栅格、组件和工具类。
+- 使用前引入 bootstrap.min.css；需要交互组件时再引入 bootstrap.min.js。
+- .container 提供固定最大宽度并居中，.container-fluid 宽度 100%。
+- Bootstrap Icons 是独立图标库，需单独引入。
+
+**示例代码：**
+
+```html
+<link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+<script src="./bootstrap/bootstrap.min.js"><\/script>
+```
+
+**Bootstrap 栅格系统**
+
+**断点：**
+断点（Breakpoints）时响应式设计的组成部分。通过断点可以控制何
+时可以在特定视口（viewport)或设备尺寸下调整布局。
+
+|Breakpoint|Class infix|Dimensions|
+|-|-|-|
+|Extra small|None|<576px|
+|Small|sm|≥576px|
+|Medium|md|2768px|
+|Large|lg|≥992px|
+|Extra large|xl|≥1200px|
+|Extra extra large|xxl|≥1400px|
+
+容器是Bootstrap中最基本的布局元素，在使用我们的默认网格系统时是必需的。容器用于将其中的内容居中。包含：默认容器（container）、响应式容器（Responsive containers）、流式容器（Fluid containers）三种
+```
+Bootstrap附带三种不同的容器：
+.container，它在每个响应断点处设置max-width
+.container-fluid，所有断点width：100%
+.container-{breakpoint}，直到指定的断点width：100%为止
+```
+
+ **网格系统（grid）**：
+Bootstrap的网格系统（栅格系统）使用一系列容器、行和列来布局和对齐内容。它是用flexbox构建的，并且是完全响应的。
+注意：Bootstrap的网格系统每行划分为12份。
+
+|              | xs    | sm       | md       | lg       | xl       | xxl       |
+| ------------ | ----- | -------- | -------- | -------- | -------- | --------- |
+| container    | none  | 540      | 720      | 960      | 1140px   | 1320px    |
+| class prefix | .col- | .col-sm- | .col-md- | .col-lg- | .col-xl- | .col-xxl- |
+| # of columns | 12    |          |          |          |          |           |
+
+
+
+```
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">1</div>
+		<div class="col-md-3">2</div>
+		<div class="col-md-3">3</div>
+		<div class="col-md-3">4</div>
+	</div>
+</div>
+```
+
+注意：
+1.row代表一行
+2.col-xx-份数 比如col-md-3
+3.可以写多个类名，决定不同宽度下排列个数
+
+**列对齐**
+
+见官网[列 · Bootstrap v5.3 --- Columns · Bootstrap v5.3](https://getbootstrap.com/docs/5.3/layout/columns/)
+
+**字体图标**
+
+Bootstrap Icons 是独立图标库，需单独引入
+
+在线引入
+
+```
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+```
+
+#### TDK 网站优化标签
+
+TDK是Title、Description和Keywords三个元标签的缩写，它们是网站SEO优化的核心元素。直接影响搜索引擎对网页的理解和排名。
+
+>Title：决定搜索结果的标题显示，是搜索引擎判断页面主题的首要依据。
+>Description：生成搜索结果的摘要描述，影响用户点击率（CTR）。
+>Keywords：提供页面主题关键词（尽管现代搜索引擎已弱化其权重，仍部分参考）
+>三者共同构成网页的“第一印象”，优化不当可能导致排名下降或点击流失
+
