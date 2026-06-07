@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = []
+    while (arr.length < 5) {
+      let age = +prompt(`请输入第${arr.length + 1}个人有效年龄`)
+      if (age >= 0 && age <= 100) {
+        arr.push(age)
+      }
+    }
+    let sum = 0
+    for (let i = 0; i < arr.length; i++) {
+      document.write(`${arr[i]}    `)
+      sum += arr[i]
+    }
+    let avg = sum / arr.length
+    document.write(`<br>`);
+    document.write(`${sum} <br>`)
+    document.write(`${avg} <br>`)
+  </script>
+</body>
+
+</html>
