@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    .box {
+      position: relative;
+      width: 600px;
+      height: 200px;
+      background-color: pink;
+      margin: 0 auto;
+    }
+
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      line-height: 14px;
+      background-color: #fff;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <button>点击</button>
+  <div class="box">
+    <div class="close">x</div>
+  </div>
+  <script>
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', function () {
+      alert('您好')
+    })
+    const close = document.querySelector('.close')
+    close.addEventListener('click', function () {
+      document.querySelector('.box').style.display = 'none'
+    })
+  </script>
+</body>
+
+</html>

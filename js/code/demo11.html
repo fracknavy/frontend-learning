@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      width: 500px;
+      height: 250px;
+      border: 1px solid black;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+
+    .box h3 {
+      padding-top: 10px;
+      text-align: center;
+    }
+
+    .box .name {
+      width: 350px;
+      margin: 0 auto;
+      padding-top: 50px;
+    }
+
+    .box .name span {
+      font-weight: 700;
+      font-size: 40px;
+      padding-left: 30px;
+      padding-top: 50px;
+    }
+
+    .box .btn {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .box .btn button {
+      width: 100px;
+      height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h3>随机问答</h3>
+    <div class="name">
+      <span>姓名是:</span>
+      <span>xxx</span>
+    </div>
+    <div class="btn">
+      <button>开始</button>
+      <button>结束</button>
+    </div>
+  </div>
+  <script>
+    const arr = ['马超', '黄忠', '赵云', '关羽', '张飞']
+    let random = 0
+    let k = 0
+    const btn1 = document.querySelector('.box .btn button:nth-child(1)')
+    btn1.addEventListener('click', function () {
+      k = setInterval(function () {
+        random = Math.floor(Math.random() * arr.length)
+        document.querySelector('.box .name span:nth-child(2)').innerHTML = arr[random]
+      }, 50)
+    })
+    const btn2 = document.querySelector('.box .btn button:nth-child(2)')
+    btn2.addEventListener('click', function () {
+      clearInterval(k)
+    })
+  </script>
+</body>
+
+</html>
