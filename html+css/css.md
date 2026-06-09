@@ -822,7 +822,7 @@ a:hover   0,0,1,1
 
 css中规定每个盒子分别由: 内容区域(content) ,内边距区域 (padding),边框区域(border),外边域区域(margin)
 
-![QQ_1778477369708](D:\study\frontend-learning\img\QQ_1778477369708.png)
+![QQ_1778477369708](img\QQ_1778477369708.png)
 
 
 
