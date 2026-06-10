@@ -400,6 +400,71 @@ console.log('我也是回调函数'）
 > - `mouseover` 和 `mouseout` 会有冒泡效果
 > - `mouseenter` 和 `mouseleave` 没有冒泡效果（推荐）
 
+**阻止默认行为**
+
+1.4阻止冒泡
+我们某些情况下需要阻止默认行为的发生，比如阻止链接的跳转，表单域跳转
+语法：
+```
+e.preventDefault()
+<form action="http://www.baidu.com&quot;&gt;
+	<inputtype="submit"value="提交">
+</form>
+<script>
+	const form= document.querySelector('form')
+	form.addEventListener('click',function (e){
+	//阻止表单默认提交行为
+	e.preventDefault()
+})
+```
+**事件解绑**
+
+on事件方式，直接使用null覆盖偶就可以实现事件的解绑
+语法：
+
+```
+//绑定事件
+btn.onclick = function (){
+	alert('点击了'）
+}
+//解绑事件
+btn.onclick= null
+```
+
+addEventListener方式，必须使用：
+removeEventListener(事件类型，事件处理函数，[获取捕获或者冒泡阶段])
+例如：
+
+```html
+<script>
+	function fn() {
+	alert(`点击了')
+	}
+//绑定事件
+	btn.addEventListener('click',fn)
+//解绑事件
+	btn.removeEventListener('click',fn)
+<script>
+```
+
+**注意：匿名函数无法被解绑**
+
+
+
+**两种注册事件的区别** l 
+
+传统on注册（L0） 
+1.同一个对象,后面注册的事件会覆盖前面注册(同一个事件)
+2.直接使用null覆盖偶就可以实现事件的解绑
+3.都是冒泡阶段执行的 
+
+事件监听注册（L2）
+1.语法: addEventListener(事件类型, 事件处理函数, 是否使用捕获) 
+2.后面注册的事件不会覆盖前面注册的事件(同一个事件) 
+3.可以通过第三个参数去确定是在冒泡或者捕获阶段执行 
+4.必须使用removeEventListener(事件类型, 事件处理函数, 获取捕获或者冒泡阶段) 
+5.匿名函数无法被解绑
+
 #### 事件委托
 
 事件委托是利用事件流的特征解决一些现实开发需求的知识技巧，主要的作用是提升程序效率。
@@ -434,6 +499,9 @@ console.log('我也是回调函数'）
 window.addEventListener('load', function() {
     // 页面资源全部加载完毕后执行
 })
+document.addEventListener('DOMContentLoaded', function() {
+    // 初始html文档加载完毕后执行
+})
 ```
 
 **元素滚动事件**
@@ -446,6 +514,26 @@ window.addEventListener('scroll', function() {
 })
 ```
 
+scrollLeft和scrollTop（属性）
+
+>获取被卷去的大小
+>获取元素内容往左、往上滚出去看不到的距离
+>这两个值是可读写的
+>尽量在scroll事件里面获取被卷去的距离
+
+```
+div.addEventListener('scroll',function(){
+	console.log(this.scrollTop)
+	const n =document.documentElement.scrollTop
+	console.log(n)
+})
+注意:document.documentElement html文档返回对象为html
+
+window.scrollTo(x,y)
+```
+
+#### 
+
 **页面尺寸事件**
 
 会在窗口尺寸改变的时候触发事件
@@ -456,6 +544,8 @@ window.addEventListener('resize', function() {
 })
 ```
 
+`clientWidth` `clientHeight`不包含padding、border
+
 #### 元素尺寸与位置
 
 获取元素的自身宽高、包含元素自身设置的宽高、padding、border
@@ -464,7 +554,9 @@ window.addEventListener('resize', function() {
 
 > 注意：获取的是可视宽高，如果盒子是隐藏的，获取的结果是0
 
----
+获取位置：
+>获取元素距离自己定位父级元素的左、上距离
+>offsetLeft和offsetTop注意是只读属性
 
 ### 定时器
 

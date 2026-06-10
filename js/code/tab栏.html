@@ -74,11 +74,11 @@
     <div class="tab-nav">
       <h3>每日特价</h3>
       <ul>
-        <li><a class="active" href="javascript:;">精选</a></li>
-        <li><a href="javascript:;">美食</a></li>
-        <li><a href="javascript:;">百货</a></li>
-        <li><a href="javascript:;">个护</a></li>
-        <li><a href="javascript:;">预告</a></li>
+        <li><a class="active" href="javascript:;" data-id="0">精选</a></li>
+        <li><a href="javascript:;" data-id="1">美食</a></li>
+        <li><a href="javascript:;" data-id="2">百货</a></li>
+        <li><a href="javascript:;" data-id="3">个护</a></li>
+        <li><a href="javascript:;" data-id="4">预告</a></li>
       </ul>
     </div>
     <div class="tab-content">
@@ -90,6 +90,7 @@
     </div>
   </div>
   <script>
+    /*
     // 1. a 模块制作 要给 5个链接绑定鼠标经过事件
     // 1.1 获取 a 元素 
     const as = document.querySelectorAll('.tab-nav a')
@@ -110,9 +111,19 @@
         document.querySelector('.tab-content .active').classList.remove('active')
         // 对应序号的那个 item 显示 添加 active 类
         document.querySelector(`.tab-content .item:nth-child(${i + 1})`).classList.add('active')
-
       })
     }
+    */
+    const ul = document.querySelector('.tab-nav ul')
+    ul.addEventListener('mouseover', function (e) {
+      if (e.target.tagName === 'A') {
+        document.querySelector('.tab-nav .active').classList.remove('active')
+        e.target.classList.add('active')
+        const id = + e.target.dataset.id
+        document.querySelector('.tab-content .active').classList.remove('active')
+        document.querySelector(`.tab-content .item:nth-child(${id + 1})`).classList.add('active')
+      }
+    })
   </script>
 </body>
 
