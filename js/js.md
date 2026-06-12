@@ -1347,6 +1347,32 @@ arr.sort(function (a, b) {
 console.log(arr)//[5,4,3,2,1]
 ```
 
+**map()**
+
+数组中map方法  迭代数组
+使用场景：
+map可以处理数据，并且返回新的数组
+
+```
+const arr =['pink','red','blue']
+const newArr= arr.map(function (item,index){
+	console.log(item）//item得到数组元素 'pink' 'red' 'blue'
+	console.log(index)//index得到索引号 012
+	return item+'老师'
+})
+console.log(newArr）//['pink老师'，'red老师'，'blue老师']
+```
+
+**join()**
+
+join()方法用于把数组中的所有元素转换一个字符串
+```
+const arr=['pink老师','red老师','blue老师']
+console.log(arr.join('')）//pink老师red老师blue老师
+```
+参数:
+数组元素是通过参数里面指定的分隔符进行分隔的
+
 ### 函数
 
 > 理解函数的封装特性，掌握函数的语法规则

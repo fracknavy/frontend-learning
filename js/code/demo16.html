@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>学生信息管理</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #721c24;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin: 20px 0;
+
+    }
+
+    .title {
+      width: 933px;
+      height: 50px;
+      line-height: 50px;
+      padding-right: 15px;
+      border: 1px solid #ebebeb;
+      margin: 10px auto;
+      background-color: #f2f2f2;
+      text-align: right;
+    }
+
+    .title span {
+      display: inline-block;
+      vertical-align: middle;
+      height: 20px;
+      margin: -3px 5px 0;
+      text-align: center;
+      line-height: 20px;
+      color: #f26934;
+      font-weight: 700;
+    }
+
+    table {
+      margin: 0 auto;
+      width: 950px;
+      border-collapse: collapse;
+      color: #3c3637;
+    }
+
+    th {
+      padding: 10px;
+      background: #f2f2f2;
+      font-size: 18px;
+      text-align: left;
+    }
+
+    td,
+    th {
+      border: 1px solid #ebebeb;
+      padding: 15px;
+    }
+
+    td {
+
+      color: #666;
+      font-size: 16px;
+
+    }
+
+    tbody tr {
+      background: #fff;
+    }
+
+    tbody tr:hover {
+      background: #fbfafa;
+    }
+
+    tbody a {
+      display: inline-block;
+      width: 80px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      color: #fff;
+      background-color: #f26934;
+    }
+
+    .info {
+      width: 900px;
+      margin: 50px auto;
+      text-align: center;
+    }
+
+    .info input,
+    .info select {
+      width: 100px;
+      height: 30px;
+      outline: none;
+      border: 1px solid #ebebeb;
+      padding-left: 5px;
+      box-sizing: border-box;
+      margin-right: 10px;
+    }
+
+    .info button {
+      width: 70px;
+      height: 30px;
+      background-color: #5dbfd8;
+      outline: none;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .info button:hover {
+      background-color: #52abc1;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>学生就业统计表</h1>
+  <form class="info" autocomplete="off">
+    <input type="text" class="uname" name="uname" placeholder="姓名" />
+    <input type="text" class="age" name="age" placeholder="年龄" />
+    <input type="text" class="salary" name="salary" placeholder="薪资" />
+    <select name="gender" class="gender">
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    <select name="city" class="city">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="广州">广州</option>
+      <option value="深圳">深圳</option>
+      <option value="曹县">曹县</option>
+    </select>
+    <button class="add">
+      <i class="iconfont icon-tianjia"></i>添加
+    </button>
+  </form>
+
+  <div class="title">共有数据<span>0</span>条</div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>录入时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td>1</td>
+        <td>迪丽热巴</td>
+        <td>23</td>
+        <td>女</td>
+        <td>12000</td>
+        <td>北京</td>
+        <td>2099/9/9 08:08:08</td>
+        <td>
+          <a href="javascript:">
+            <i class="iconfont icon-shanchu"></i>
+            删除
+          </a>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
+  <script>
+    const uname = document.querySelector('.uname')
+    const age = document.querySelector('.age')
+    const gender = document.querySelector('.gender')
+    const salary = document.querySelector('.salary')
+    const city = document.querySelector('.city')
+    const tbody = document.querySelector('tbody')
+    const info = document.querySelector('.info')
+    const countSpan = document.querySelector('.title span')
+
+    const items = info.querySelectorAll('[name]')
+
+    const arr = JSON.parse(localStorage.getItem('arr')) || []
+
+    render()
+
+    info.addEventListener('submit', function (e) {
+      e.preventDefault()
+
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].value.trim() === '') {
+          return alert('输入内容不能为空')
+        }
+      }
+
+      if (isNaN(age.value) || age.value <= 0) {
+        return alert('年龄必须是大于 0 的数字')
+      }
+
+      if (isNaN(salary.value) || salary.value <= 0) {
+        return alert('薪资必须是大于 0 的数字')
+      }
+
+      const obj = {
+        uname: uname.value.trim(),
+        age: age.value.trim(),
+        gender: gender.value,
+        salary: salary.value.trim(),
+        city: city.value,
+        time: getTimeNow()
+      }
+
+      arr.push(obj)
+
+      saveData()
+      this.reset()
+      render()
+    })
+
+    function render() {
+      tbody.innerHTML = ''
+
+      countSpan.innerHTML = arr.length
+
+      for (let i = 0; i < arr.length; i++) {
+        const tr = document.createElement('tr')
+
+        tr.innerHTML = `
+        <td>${i + 1}</td>
+        <td>${arr[i].uname}</td>
+        <td>${arr[i].age}</td>
+        <td>${arr[i].gender}</td>
+        <td>${arr[i].salary}</td>
+        <td>${arr[i].city}</td>
+        <td>${arr[i].time}</td>
+        <td>
+          <a href="javascript:;" data-id="${i}">删除</a>
+        </td>
+      `
+
+        tbody.appendChild(tr)
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem('arr', JSON.stringify(arr))
+    }
+
+    function getTimeNow() {
+      const date = new Date()
+
+      const year = date.getFullYear()
+      const month = String(date.getMonth() + 1).padStart(2, '0')
+      const day = String(date.getDate()).padStart(2, '0')
+      const hour = String(date.getHours()).padStart(2, '0')
+      const minute = String(date.getMinutes()).padStart(2, '0')
+      const second = String(date.getSeconds()).padStart(2, '0')
+
+      return `${year}-${month}-${day} ${hour}:${minute}:${second}`
+    }
+
+    tbody.addEventListener('click', function (e) {
+      const link = e.target.closest('a')
+
+      if (!link) return
+
+      if (confirm('确定要删除吗？')) {
+        const id = link.dataset.id
+        arr.splice(id, 1)
+
+        saveData()
+        render()
+      }
+    })
+  </script>
+</body>
+
+</html>
