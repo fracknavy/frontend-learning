@@ -551,12 +551,10 @@ window.addEventListener('resize', function() {
 获取元素的自身宽高、包含元素自身设置的宽高、padding、border
 
 `offsetWidth` 和 `offsetHeight`：获取出来的是数值，方便计算
+注意：获取的是可视宽高，如果盒子是隐藏的，获取的结果是0
 
-> 注意：获取的是可视宽高，如果盒子是隐藏的，获取的结果是0
-
-获取位置：
->获取元素距离自己定位父级元素的左、上距离
->offsetLeft和offsetTop注意是只读属性
+获取元素距离自己定位父级元素的左、上距离
+`offsetLeft`和`offsetTop`    注意是只读属性
 
 ### 定时器
 
