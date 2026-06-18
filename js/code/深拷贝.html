@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script src="lodash.min.js"></script>
+
+  <script>
+    const obj = {
+      uname: 'lucky',
+      age: 17,
+      hobby: ['basketball', 'football'],
+      student: {
+        id: 2000,
+        major: 'yes'
+      }
+    }
+    const o = {}
+    //lodash实现深拷贝
+    const oo = _.cloneDeep(obj)
+
+    //手动书写递归函数实现深拷贝
+    function deecopy(newObj, oldObj) {
+      for (let k in oldObj) {
+        if (oldObj[k] instanceof Array) {
+          newObj[k] = []
+          deecopy(newObj[k], oldObj[k])
+        } else if (oldObj[k] instanceof Object) {
+          newObj[k] = {}
+          deecopy(newObj[k], oldObj[k])
+        } else {
+          newObj[k] = oldObj[k]
+        }
+
+      }
+    }
+    //把对象转换为json字符串
+    const o3 = JSON.parse(JSON.stringify(obj))
+
+    deecopy(o, obj)
+    console.log(o)
+    o.age = 18
+    o.hobby[0] = 'run'
+    o.student.major = 'no'
+    console.log(obj)
+    console.log(oo)
+    oo.age = 18
+    oo.hobby[0] = 'run'
+    oo.student.major = 'no'
+    console.log(obj)
+  </script>
+</body>
+
+</html>

@@ -85,6 +85,8 @@
       `
     }
     Modal.prototype.open = function () {
+      const box = document.querySelector('.modal')
+      box && box.remove()
       document.body.append(this.modalBox)
       this.modalBox.querySelector('i').addEventListener('click', () => {
         this.close()

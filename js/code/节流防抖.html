@@ -1,0 +1,95 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="lodash.min.js"></script>
+  <script>
+    const box = document.querySelector('.box')
+    let i = 1
+    function move() {
+      box.innerHTML = i++
+    }
+    //lodash内置函数实现防抖
+    // box.addEventListener('mousemove', _.debounce(move, 100))
+
+    function debounce(fun, time) {
+      let timeId
+      return function () {
+        if (timeId)
+          clearTimeout(timeId)
+        timeId = setTimeout(function () {
+          fun()
+        }, time)
+      }
+    }
+    box.addEventListener('mousemove', debounce(move, 100))
+
+  </script>
+</body>
+
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 500px;
+      height: 500px;
+      background-color: #ccc;
+      color: #fff;
+      text-align: center;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="./lodash.min.js"></script>
+  <script>
+    let i = 1  // 让这个变量++
+    const box = document.querySelector('.box')
+    // 鼠标移动函数
+    function mouseMove() {
+      box.innerHTML = i++
+      // 如果里面存在大量操作 dom 的情况，可能会卡顿
+    }
+    // lodash 节流写法
+    // box.addEventListener('mousemove', _.throttle(mouseMove, 500))
+    function throttle(fun, t) {
+      let timeId = null
+      return function () {
+        if (!timeId) {
+          timeId = setTimeout(function () {
+            fun()
+            timeId = null
+          }, t)
+        }
+      }
+    }
+    box.addEventListener('mousemove', throttle(mouseMove, 1000))
+  </script>
+</body>
+
+</html> -->
